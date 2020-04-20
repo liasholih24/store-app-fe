@@ -1,62 +1,65 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-class ProductCreate extends React.Component {  
-  CreateProduct = (e) => {
-    e.preventDefault();
+class ProductUpdate extends React.Component {  
 
-    this.props.ProductStore.createProductAsync({
+  
+  componentDidMount() {
+    this.props.ProductStore.findProductAsync(this.props.match.params.id); 
+     
+  }
+
+  UpdateProduct = (e) => {
+    e.preventDefault();
+    this.props.ProductStore.updateProductAsync({
         no_product: this.noproduct.value,
         nama_product: this.namaproduct.value,
-    });
+    }, this.props.ProductStore.productData.id);
 
     this.props.history.go(-1)
-};
+  }
+
+
   render(){
     return( 
       <div>
           <div>
           <form
-            onSubmit={this.CreateProduct}>
-            <TextField
+            onSubmit={this.UpdateProduct}>
+             <input
               id="standard-full-width"
-              inputRef={input => (this.noproduct = input)}
+              defaultValue={this.props.ProductStore.productData.no_product}
+              ref={input => (this.noproduct = input)}
+              onChange={this.handleChange}
               className="input"
               type="text"
               label="Nomor Product"
               style={{ margin: 8 }}
-              placeholder="Nomor Product"
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
             />
-
-            <TextField
+           
+            <input
               id="standard-full-width"
-              ref="nama_product"
-              inputRef={input => (this.namaproduct = input)}
+              defaultValue={this.props.ProductStore.productData.nama_product}
+              ref={input => (this.namaproduct = input)}
+              onChange={this.onTodoChange}
               className="input"
               type="text"
               style={{ margin: 8 }}
-              placeholder="Nama Product"
+              label="Nama Product"
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
             />
             
             <Button type="submit" variant="contained" color="primary">
-              Save
+              Update
             </Button>
             </form>
           </div>
       </div>
       )
   } 
-}
-export default inject("ProductStore")(observer(ProductCreate));
+} 
+export default inject("ProductStore")(observer(ProductUpdate));
