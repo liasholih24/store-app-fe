@@ -9,8 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-
-
 class ProductList extends React.Component {
 
   render(){
@@ -22,8 +20,8 @@ class ProductList extends React.Component {
          <Table aria-label="simple table">
            <TableHead>
              <TableRow>
-               <TableCell>Name</TableCell>
-               <TableCell>Detail</TableCell>
+               <TableCell>SKU</TableCell>
+               <TableCell>Nama Product</TableCell>
                <TableCell align="right">Action</TableCell>
              </TableRow>
            </TableHead>
@@ -35,8 +33,11 @@ class ProductList extends React.Component {
                  </TableCell>
                  <TableCell >{row.nama_product}</TableCell>
                  <TableCell align="right">
-                  <Button href={`/productedit/${row.id}`} variant="outlined" size="small" color="primary">
+                  <Button style={{marginRight:15}} href={`/productedit/${row.id}`} variant="outlined" size="small" color="primary">
                       Edit
+                  </Button>
+                  <Button href={`/productdestroy/${row.id}`} variant="outlined" size="small" color="danger">
+                      Delete
                   </Button>
                  </TableCell>
                </TableRow>

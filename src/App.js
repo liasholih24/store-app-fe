@@ -19,6 +19,7 @@ import Copyright from './components/appLayout/Copyright';
 import ProductList from './components/products/product-list';
 import ProductCreate from './components/products/product-create';
 import ProductUpdate from './components/products/product-update';
+import ProductCard from './components/products/product-card';
 
 
 const drawerWidth = 240;
@@ -151,7 +152,8 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Route path="/product" exact component={ProductList} />
+          <Route path="/" exact component={ProductCard} />
+          <Route path="/product" component={ProductList} />
           <Route path="/product/create" component={ ProductCreate } />
           <Route path="/productedit/:id" component={ ProductUpdate } />
           <Box pt={4}>

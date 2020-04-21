@@ -7,12 +7,17 @@ import { Link } from 'react-router-dom';
 
 export const mainListItems = (
   <div> 
-    <ListItem button>
+    <ListItem button component={Link} to="/">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <Link to="/product"><ListItemText primary="Products" /></Link>
-      
+      <ListItemText primary="Catalogue" />
+    </ListItem>
+    <ListItem button component={Link} to="/product">
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <ListItemText primary="Products" />
     </ListItem>
   </div>
 );
