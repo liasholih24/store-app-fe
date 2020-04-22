@@ -9,7 +9,7 @@ import ProductStore from './stores/ProductStore';
 ReactDOM.render(
   <Router>
      <Provider ProductStore={ProductStore}>
-      <App />
+      <App/>
     </Provider>
   </Router>,
   document.getElementById('root')

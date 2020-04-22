@@ -114,7 +114,6 @@ export default function Dashboard() {
     setOpen(true);
   };
 
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -152,10 +151,10 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Route path="/" exact component={ProductCard} />
-          <Route path="/product" component={ProductList} />
-          <Route path="/product/create" component={ ProductCreate } />
-          <Route path="/productedit/:id" component={ ProductUpdate } />
+          <Route path="/" exact component={ ProductCard } />
+          <Route path="/product" exact component={ ProductList } />
+          <Route path="/product/create" exact component={ ProductCreate } />
+          <Route path="/productedit/:id" exact component={ ProductUpdate } />
           <Box pt={4}>
             <Copyright />
           </Box>

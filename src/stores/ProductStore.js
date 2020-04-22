@@ -13,7 +13,6 @@ class ProductStore{
             const data = await this.productService.get()
             runInAction(()=>{
                 this.productData = data.rows
-                console.log(this.productData.rows)
             })
         }
         catch (error) {
@@ -28,7 +27,6 @@ class ProductStore{
             const data = await this.productService.fetch(id) 
             runInAction(()=>{
                 this.productData = data.rows[0]
-                console.log(this.productData)
             })
         }
         catch (error) {
@@ -59,6 +57,21 @@ class ProductStore{
         try {
             const response = await this.productService.put(model, id)
             if (response.status === 200) {
+                runInAction(() => {
+                    this.status = "success";
+                })
+            } 
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error";
+            });
+        }
+    }
+
+    deleteProductAsync = async (id) => {
+        try {
+            const response = await this.productService.delete(id);
+            if (response.status === 204) {
                 runInAction(() => {
                     this.status = "success";
                 })

@@ -4,24 +4,17 @@ import Button from '@material-ui/core/Button';
 
 class ProductUpdate extends React.Component {  
 
-  
-  componentDidMount() {
-    this.props.ProductStore.findProductAsync(this.props.match.params.id); 
-     
-  }
-
   UpdateProduct = (e) => {
     e.preventDefault();
     this.props.ProductStore.updateProductAsync({
-        no_product: this.noproduct.value,
-        nama_product: this.namaproduct.value,
+        no_product: this.noproduct.value
     }, this.props.ProductStore.productData.id);
 
-    this.props.history.go(-1)
+    this.props.ProductStore.getProductAsync()  
   }
-
-
+ 
   render(){
+    this.props.ProductStore.findProductAsync(this.props.match.params.id)
     return( 
       <div>
           <div>
@@ -39,19 +32,7 @@ class ProductUpdate extends React.Component {
               fullWidth
               margin="normal"
             />
-           
-            <input
-              id="standard-full-width"
-              defaultValue={this.props.ProductStore.productData.nama_product}
-              ref={input => (this.namaproduct = input)}
-              onChange={this.onTodoChange}
-              className="input"
-              type="text"
-              style={{ margin: 8 }}
-              label="Nama Product"
-              fullWidth
-              margin="normal"
-            />
+
             
             <Button type="submit" variant="contained" color="primary">
               Update
@@ -61,5 +42,5 @@ class ProductUpdate extends React.Component {
       </div>
       )
   } 
-} 
+}
 export default inject("ProductStore")(observer(ProductUpdate));

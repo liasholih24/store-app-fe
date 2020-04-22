@@ -45,5 +45,14 @@ class ProductService {
         const response = await fetch(request);
         return response;
     }
+
+    delete = async (id) => {
+        const options = {
+            method: "DELETE",
+        }
+     const request = new Request(webApiUrl + "/deleteproduct/" + id, options); 
+     const response = await fetch(request);
+     return response.json();
+    }
 }
 export default ProductService;
